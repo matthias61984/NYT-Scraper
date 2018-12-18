@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 var ArticleSchema = new Schema({
     title: {
         type: String,
-        required: TextTrack,
+        required: true,
     },
     link: {
         type: String,
