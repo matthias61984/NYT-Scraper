@@ -30,7 +30,9 @@ app.get("/scrape", function(req, res) {
             console.log(dbArticle);
           })
           .catch(function(err) {
-            console.log(err);
+            if (err.name != "ValidationError") {
+                console.log(err);
+            }
           });
       });
       res.send("Scrape Complete");
