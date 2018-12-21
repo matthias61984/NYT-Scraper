@@ -22,6 +22,10 @@ app.get("/scrape", function(req, res) {
         result.title = $(this)
           .children("h2")
           .text();
+        result.summary = $(this)
+          .parent()
+          .children("p")
+          .text();
         result.link = $(this)
           .parent()
           .attr("href");
@@ -37,6 +41,16 @@ app.get("/scrape", function(req, res) {
       });
       res.send("Scrape Complete");
     });
+  });
+
+  app.get("/articles", function(req, res) {
+    db.Article.find({})
+      .then(function(dbArticle) {
+        res.json(dbArticle);
+      })
+      .catch(function(err) {
+        res.json(err);
+      });
   });
 
 app.listen(PORT, function () {
